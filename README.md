@@ -8,7 +8,7 @@ example for troubleshooting wpautop on render_block when using acf_register_bloc
 5. prebuilt template will render
 6. note that spans do not have added line breaks in Gutenberg preview
 7. publish post/page
-8. note that spans now have <br> rendered due line breaks applied wpautop
+8. note the empty `<p>` and that spans now have `<br>` rendered after due line breaks applied wpautop
 
 
 Rendered output:
