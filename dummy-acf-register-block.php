@@ -9,6 +9,31 @@ Author: mat@utk.edu
 Author URI: https://lib.utk.edu
 */
 
+add_action('acf/init', 'acf_register_blocks_dummy');
+
+add_action('admin_enqueue_scripts', function () {
+    wp_enqueue_style(
+        'dummy.css',
+        plugin_dir_url(__FILE__) . '/dummy.css',
+        false,
+        null);
+});
+
+add_action('wp_enqueue_scripts', function () {
+    wp_enqueue_style(
+        'dummy.css',
+        plugin_dir_url(__FILE__) . '/dummy.css',
+        false,
+        null);
+});
+
+add_filter('render_block', function ($block_content, $block) {
+    if ( 'acf/directory' === $block['blockName'] ) {
+        remove_filter('the_content', 'wpautop');
+    }
+    return $block_content;
+}, 10, 2);
+
 function acf_register_blocks_dummy() {
 
     if( function_exists('acf_register_block') ) {
@@ -27,40 +52,10 @@ function acf_register_blocks_dummy() {
 
 }
 
-function acf_register_blocks_dummy_callback( $block ) {
+function acf_register_blocks_dummy_callback( ) {
 
-    // convert name into path friendly slug
-    $slug = str_replace('acf/', '', $block['name']);
-
-    // include a template
-    if( file_exists( dirname(__FILE__) . "/templates/block-{$slug}.php") ) {
-        include( dirname(__FILE__) . "/templates/block-{$slug}.php" );
+    if( file_exists( dirname(__FILE__) . "/templates/block-dummy.php") ) {
+        include( dirname(__FILE__) . "/templates/block-dummy.php" );
     }
 
 }
-
-
-add_action('admin_enqueue_scripts', function () {
-    wp_enqueue_style(
-        'dummy.css',
-        plugin_dir_url(__FILE__) . '/dummy.css',
-        false,
-        null);
-});
-
-add_action('wp_enqueue_scripts', function () {
-    wp_enqueue_style(
-        'dummy.css',
-        plugin_dir_url(__FILE__) . '/dummy.css',
-        false,
-        null);
-});
-
-add_action('acf/init', 'acf_register_blocks_dummy');
-
-add_filter('render_block', function ($block_content, $block) {
-    if ( 'acf/directory' === $block['blockName'] ) {
-        //
-    }
-    return $block_content;
-}, 10, 2);
