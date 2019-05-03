@@ -1,11 +1,16 @@
+<?php
+/*
+ *  template for dummy component
+ */
+?>
 <div class="dummy-block">
     <div class="dummy-header">
-        <h2>Dummy Title</h2>
+        <h2><?php the_field('dummy_title'); ?></h2>
     </div>
-    <p class="dummy-body">Nunc sed sodales ligula. Phasellus quis semper nisi, ac mattis libero. Nam tincidunt fringilla purus ornare lobortis. Fusce id leo vitae nunc pellentesque pretium vel quis enim. Fusce eleifend at sapien et dapibus. Nunc a tellus at nisl pretium semper. Aliquam sollicitudin feugiat lobortis. Nullam volutpat enim at mollis bibendum.</p>
+    <p class="dummy-body"><?php the_field('dummy_body'); ?></p>
     <div class="dummy-meta">
-        <span>Dummy Aardvark</span>
-        <span>Dummy Basilisk</span>
-        <span>Dummy Capybara</span>
+        <span><?php the_field('dummy_meta_1'); ?></span>
+        <span><?php the_field('dummy_meta_2'); ?></span>
+        <span><?php the_field('dummy_meta_3'); ?></span>
     </div>
 </div>
