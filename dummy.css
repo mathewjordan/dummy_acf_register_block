@@ -1,0 +1,13 @@
+.dummy-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.dummy-block .dummy-meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.dummy-block .dummy-meta span {
+    display: block;
+}
