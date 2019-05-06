@@ -34,6 +34,18 @@ add_filter('render_block', function ($block_content, $block) {
     return $block_content;
 }, 10, 2);
 
+
+add_filter('acf/settings/save_json', function () {
+
+    return dirname(__FILE__) . '/acf-json';
+});
+
+add_filter('acf/settings/load_json', function ( $paths ) {
+    unset($paths[0]);
+    $paths[] = dirname(__FILE__) . '/acf-json';
+    return $paths;
+});
+
 function acf_register_blocks_dummy() {
 
     if( function_exists('acf_register_block') ) {
